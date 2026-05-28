@@ -17,9 +17,9 @@ wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11540643/SRR11540643_2.fastq.gz
 wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11540644/SRR11540644_1.fastq.gz
 wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11540644/SRR11540644_2.fastq.gz```
 
-``````
+
 # paso2
-Module load java11
+```Module load java11
 
 java -jar /opt/ohpc/pub/apps/trimmomatic/0.38/bin/trimmomatic-0.38.jar PE \
 -phred33 \
@@ -79,7 +79,7 @@ R2_paired_44.fastq.gz R2_unpaired_44.fastq.gz \
 ILLUMINACLIP:/opt/ohpc/pub/apps/trimmomatic/0.38/bin/adapters/TruSeq3-PE.fa:2:30:10 \
 LEADING:3 TRAILING:3 \
 SLIDINGWINDOW:4:15 \
-MINLEN:36
+MINLEN:36```
 
 Con esto hicimos el Trimmomatic y esto ayudo a limpiar las secuencias crudas ya que en el articulo no mencionaban que estuvieran limpias.
 
