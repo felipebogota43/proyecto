@@ -2,7 +2,7 @@
 Proyecto bioinfo
 
 
-# paso1
+# Paso1
 
 ```wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/039/SRR11540639/SRR11540639_1.fastq.gz```
 
@@ -37,7 +37,7 @@ Proyecto bioinfo
 Descaragmos las secuencias paired-end de oryza sativa tanto la forward como la reverse
 
 
-# paso2
+# Paso2
 ```Module load java11```
 
 
@@ -124,5 +124,13 @@ Con hisat2 se crean dos.tsv  uno con los exones y otro con los sitios de empalme
 ```hisat2 -p 8 -x Rice_index -1 $SRR11540641_1.fastq.gz -2 $SRR11540641_2.fastq.gz -S $SRR11540639.sam```
 ```hisat2 -p 8 -x Rice_index -1 $SRR11540642_1.fastq.gz -2 $SRR11540642_2.fastq.gz -S $SRR11540639.sam```
 ```hisat2 -p 8 -x Rice_index -1 $SRR11540643_1.fastq.gz -2 $SRR11540643_2.fastq.gz -S $SRR11540639.sam```
-```hisat2 -p 8 -x Rice_index -1 $SRR11540644_1.fastq.gz -2 $SRR11540644_2.fastq.gz -S $SRR11540644.sam```
+
+Hisat2 con el mapeo hace un resumen de todas las lecturas en un solo archivo y esto ayuda a resolver metricas relacionadas con como se mapearon y el numero de lecturas.
+
+# Paso6
+```` module load samtools```
+```for line in SRR11540639 SRR11540640 SRR11540641 SRR11540642 SRR11540643 SRR11540644; do```
+  ```sam="${line}.sam"```
+  ```bam="${line}.bam"```
+  ```samtools sort -@ 8 -o "${line}.bam" "${line}.sam"```
 
