@@ -65,7 +65,7 @@ MINLEN:36```
 -phred33 \
 SRR11540641_1.fastq.gz SRR11540641_2.fastq.gz \
 R1_paired_41.fastq.gz R1_unpaired_41.fastq.gz \
-R2_paired_39.fastq.gz R2_unpaired_41.fastq.gz \
+R2_paired_41.fastq.gz R2_unpaired_41.fastq.gz \
 ILLUMINACLIP:/opt/ohpc/pub/apps/trimmomatic/0.38/bin/adapters/TruSeq3-PE.fa:2:30:10 \
 LEADING:3 TRAILING:3 \
 SLIDINGWINDOW:4:15 \
@@ -100,6 +100,13 @@ ILLUMINACLIP:/opt/ohpc/pub/apps/trimmomatic/0.38/bin/adapters/TruSeq3-PE.fa:2:30
 LEADING:3 TRAILING:3 \
 SLIDINGWINDOW:4:15 \
 MINLEN:36```
+
+
+
+
+
+
+
 
 Con esto hicimos el Trimmomatic y esto ayudo a limpiar las secuencias crudas ya que en el articulo no mencionaban que estuvieran limpias.
 
