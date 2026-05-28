@@ -1,5 +1,5 @@
 # proyecto
-Proyecto bioinfo
+ESte pipeline se utilizo en ambos datsets pero para ejemplificar solo se utilizara el prefijo SRR115
 
 
 # Paso1
@@ -37,7 +37,9 @@ Proyecto bioinfo
 Descaragmos las secuencias paired-end de oryza sativa tanto la forward como la reverse
 
 
-# Paso2
+# Trimming
+Esto solo se hizo para el SRR115 ya que el SRR682 ya eran secuencia limpias
+
 ```Module load java11```
 
 
@@ -104,17 +106,17 @@ Descaragmos las secuencias paired-end de oryza sativa tanto la forward como la r
 
 Con esto hicimos el Trimmomatic y esto ayudo a limpiar las secuencias crudas ya que en el articulo no mencionaban que estuvieran limpias.
 
-# Paso3
+# Fatstqc
 ```fastqc *.fastq.gz```
 
   Con esto se evalua la calidad de cada secuencia par ver que tanta informacion correcta y que sea de nustro estidio de interes poseen y si son adecuadas para trabajar.
 
-# Paso4
-```hisat2_extract_splice_sites.py GCA_001433935.1_IRGSP-1.0_genomic.gff > splicesites.tsv```
+# Hisat2
+```hisat2_extract_splice_sites.py GCA_001433935.1_IRGSP-1.0_genomic.gff > splicesites.tsv
 
-```hisat2_extract_exons.py GCA_001433935.1_IRGSP-1.0_genomic.gff > exons.tsv```
+hisat2_extract_exons.py GCA_001433935.1_IRGSP-1.0_genomic.gff > exons.tsv
 
-```hisat2-build -p 8 --ss splicesites.tsv --exon exons.tsv GCA_001433935.1.fasta  Rice_index```
+hisat2-build -p 8 --ss splicesites.tsv --exon exons.tsv GCA_001433935.1.fasta  Rice_index```
 
 Con hisat2 se crean dos.tsv  uno con los exones y otro con los sitios de empalme(splicesites)luego se usa eso dos atchivos para crear un indice  esto es importante porque los istios de mepalme dan información sobre los saltos de intrones,los exones muestran las regines codificantes y por ultimo el indice a agilizar el proceso y que se mapee con precision las secuencias paired-end.
 
@@ -128,16 +130,13 @@ Con hisat2 se crean dos.tsv  uno con los exones y otro con los sitios de empalme
 Hisat2 con el mapeo hace un resumen de todas las lecturas en un solo archivo y esto ayuda a resolver metricas relacionadas con como se mapearon y el numero de lecturas.
 
 # Paso6
-```module load samtools```
+```module load samtools
 
-```for line in SRR11540639 SRR11540640 SRR11540641 SRR11540642 SRR11540643 SRR11540644```
-```do```
-
-  ```sam="$SRR11540639.sam"```
+for line in $(cat muestras.txt)
+do
+samtools sort -@ 8 -o $line.bam $line.sam;
+done```
   
-  ```bam="$SRR11540639.bam"```
-  
-  ```samtools sort -@ 8 -o "$SRR11540639.bam" "$SRR11540639.sam"```
   
   En este for loop se cambia de sam a bam ya que no se pude trabajar con ese formato y luego se ordena los productos de bam par que sea mas facil analizarlo despues
 
