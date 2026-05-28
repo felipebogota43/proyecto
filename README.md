@@ -138,6 +138,7 @@ Hisat2 con el mapeo hace un resumen de todas las lecturas en un solo archivo y e
   ```bam="$SRR11540639.bam"```
   
   ```samtools sort -@ 8 -o "$SRR11540639.bam" "$SRR11540639.sam"```
+  
   En este for loop se cambia de sam a bam ya que no se pude trabajar con ese formato y luego se ordena los productos de bam par que sea mas facil analizarlo despues
 
   # Paso7
@@ -152,6 +153,7 @@ Hisat2 con el mapeo hace un resumen de todas las lecturas en un solo archivo y e
     ```"$bam" \```
     ```"$GCA_001433935.1_IRGSP-1.0_genomic.gff" \```
     ```> "$out"```
+    
     Ya con htseq-count se cuentan cuantos alineamientos se logran adecuadamente y se logra hacer una matriz en la cual se consigue que todas la secuencias esten en un mismo archivo y que los alineamientos corrrectos se mueatren ea un numero entero para luego hacer un heatmap.
 
 # Paso8
@@ -216,6 +218,6 @@ Hisat2 con el mapeo hace un resumen de todas las lecturas en un solo archivo y e
 ```key=TRUE,```
 ```scale="row")```
 ```dev.off()```
+
 Con todo esto se creo el heatmap que mostraba los genes con alta,intermedia y baja expresion segun los colores y tambien a que tipo de planta micorriza o no micorriza pertenecia y cuales podian ser relacionados con el PHT1.
 
-dev.off()
