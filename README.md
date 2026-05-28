@@ -101,7 +101,7 @@ MINLEN:36```
 Con esto hicimos el Trimmomatic y esto ayudo a limpiar las secuencias crudas ya que en el articulo no mencionaban que estuvieran limpias.
 
 # Paso3
-fastqc*.fastq.gz
+```fastqc*.fastq.gz```
 con esto se evalua la calidad de cada secuencia
 
 # Paso4
