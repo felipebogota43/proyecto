@@ -34,6 +34,8 @@ Proyecto bioinfo
 
 ```wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11540644/SRR11540644_2.fastq.gz```
 
+DEscaragmos las secuencias paired-end de oryza sativa tanto la forward como la reverse
+
 
 # paso2
 ```Module load java11```
