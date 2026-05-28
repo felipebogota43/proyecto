@@ -34,7 +34,7 @@ Proyecto bioinfo
 
 ```wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11540644/SRR11540644_2.fastq.gz```
 
-DEscaragmos las secuencias paired-end de oryza sativa tanto la forward como la reverse
+Descaragmos las secuencias paired-end de oryza sativa tanto la forward como la reverse
 
 
 # paso2
@@ -102,14 +102,17 @@ DEscaragmos las secuencias paired-end de oryza sativa tanto la forward como la r
 ```MINLEN:36```
 
 
-
-
-
 Con esto hicimos el Trimmomatic y esto ayudo a limpiar las secuencias crudas ya que en el articulo no mencionaban que estuvieran limpias.
 
 # Paso3
 ```fastqc *.fastq.gz```
-con esto se evalua la calidad de cada secuencia
+
+  Con esto se evalua la calidad de cada secuencia
 
 # Paso4
+```hisat2_extract_splice_sites.py GCA_001433935.1_IRGSP-1.0_genomic.gff > splicesites.tsv```
+
+```hisat2_extract_exons.py GCA_001433935.1_IRGSP-1.0_genomic.gff > exons.tsv```
+
+```hisat2-build -p 8 --ss splicesites.tsv --exon exons.tsv GCA_001433935.1.fasta ```
 
