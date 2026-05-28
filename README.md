@@ -112,6 +112,7 @@ Con esto hicimos el Trimmomatic y esto ayudo a limpiar las secuencias crudas ya 
   Con esto se evalua la calidad de cada secuencia par ver que tanta informacion correcta y que sea de nustro estidio de interes poseen y si son adecuadas para trabajar.
 
 # Hisat2
+
 ```hisat2_extract_splice_sites.py GCA_001433935.1_IRGSP-1.0_genomic.gff > splicesites.tsv
 
 hisat2_extract_exons.py GCA_001433935.1_IRGSP-1.0_genomic.gff > exons.tsv
@@ -119,6 +120,8 @@ hisat2_extract_exons.py GCA_001433935.1_IRGSP-1.0_genomic.gff > exons.tsv
 hisat2-build -p 8 --ss splicesites.tsv --exon exons.tsv GCA_001433935.1.fasta  Rice_index```
 
 Con hisat2 se crean dos.tsv  uno con los exones y otro con los sitios de empalme(splicesites)luego se usa eso dos atchivos para crear un indice  esto es importante porque los istios de mepalme dan información sobre los saltos de intrones,los exones muestran las regines codificantes y por ultimo el indice a agilizar el proceso y que se mapee con precision las secuencias paired-end.
+
+Esta parte se uso solo en SRR115 ya que las del SRR682 eran single-end y no paired-end
 
 ```hisat2 -p 8 -x Rice_index -1 $SRR11540639_1.fastq.gz -2 $SRR11540639_2.fastq.gz -S $SRR11540639.sam```
 ```hisat2 -p 8 -x Rice_index -1 $SRR11540640_1.fastq.gz -2 $SRR11540640_2.fastq.gz -S $SRR11540639.sam```
@@ -139,6 +142,7 @@ done```
   
   En este for loop se cambia de sam a bam ya que no se pude trabajar con ese formato y luego se ordena los productos de bam par que sea mas facil analizarlo despues
 
+
   # Htseq-count
 ```htseq-count \```
     ```--format=bam \```
@@ -153,6 +157,8 @@ done```
     ```> "$out"```
     
     Ya con htseq-count se cuentan cuantos alineamientos se logran adecuadamente y se logra hacer una matriz en la cual se consigue que todas la secuencias esten en un mismo archivo y que los alineamientos corrrectos se mueatren ea un numero entero para luego hacer un heatmap.
+
+
 
 # Heatmap
 ```library(edgeR)```
