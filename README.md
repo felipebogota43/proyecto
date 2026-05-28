@@ -16,7 +16,7 @@ wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11540642/SRR11540643_2.fastq.gz
 wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11540642/SRR11540644_1.fastq.gz
 wgte ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11540642/SRR11540644_2.fastq.gz
 
-
+Con esto descargamos las 2 secuencia oryza sativa tanto la reverse como la forward
 
 Module load java11
 
@@ -30,8 +30,6 @@ LEADING:3 TRAILING:3 \
 SLIDINGWINDOW:4:15 \
 MINLEN:36
 
-Module load java11
-
 java -jar /opt/ohpc/pub/apps/trimmomatic/0.38/bin/trimmomatic-0.38.jar PE \
 -phred33 \
 SRR11540640_1.fastq.gz SRR11540640_2.fastq.gz \
@@ -41,7 +39,6 @@ ILLUMINACLIP:/opt/ohpc/pub/apps/trimmomatic/0.38/bin/adapters/TruSeq3-PE.fa:2:30
 LEADING:3 TRAILING:3 \
 SLIDINGWINDOW:4:15 \
 MINLEN:36
-Module load java11
 
 java -jar /opt/ohpc/pub/apps/trimmomatic/0.38/bin/trimmomatic-0.38.jar PE \
 -phred33 \
@@ -53,10 +50,6 @@ LEADING:3 TRAILING:3 \
 SLIDINGWINDOW:4:15 \
 MINLEN:36
 
-
-
-Module load java11
-
 java -jar /opt/ohpc/pub/apps/trimmomatic/0.38/bin/trimmomatic-0.38.jar PE \
 -phred33 \
 SRR11540642_1.fastq.gz SRR11540642_2.fastq.gz \
@@ -66,8 +59,6 @@ ILLUMINACLIP:/opt/ohpc/pub/apps/trimmomatic/0.38/bin/adapters/TruSeq3-PE.fa:2:30
 LEADING:3 TRAILING:3 \
 SLIDINGWINDOW:4:15 \
 MINLEN:36
-
-Module load java11
 
 java -jar /opt/ohpc/pub/apps/trimmomatic/0.38/bin/trimmomatic-0.38.jar PE \
 -phred33 \
@@ -79,8 +70,6 @@ LEADING:3 TRAILING:3 \
 SLIDINGWINDOW:4:15 \
 MINLEN:36
 
-Module load java11
-
 java -jar /opt/ohpc/pub/apps/trimmomatic/0.38/bin/trimmomatic-0.38.jar PE \
 -phred33 \
 SRR11540644_1.fastq.gz SRR11540644_2.fastq.gz \
@@ -91,5 +80,6 @@ LEADING:3 TRAILING:3 \
 SLIDINGWINDOW:4:15 \
 MINLEN:36
 
+Con esto hicimos el Trimmomatic y esto ayudo a limpiar las secuencias crudas ya que en el articulo no mencionaban que estuvieran limpias.
 
 
