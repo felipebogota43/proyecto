@@ -2,7 +2,7 @@
 ESte pipeline se utilizo en ambos datsets pero para ejemplificar solo se utilizara el prefijo SRR115
 
 
-# Paso1
+# Descargar secuencias
 
 ```wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/039/SRR11540639/SRR11540639_1.fastq.gz```
 
@@ -120,7 +120,6 @@ hisat2-build -p 8 --ss splicesites.tsv --exon exons.tsv GCA_001433935.1.fasta  R
 
 Con hisat2 se crean dos.tsv  uno con los exones y otro con los sitios de empalme(splicesites)luego se usa eso dos atchivos para crear un indice  esto es importante porque los istios de mepalme dan información sobre los saltos de intrones,los exones muestran las regines codificantes y por ultimo el indice a agilizar el proceso y que se mapee con precision las secuencias paired-end.
 
-# Paso5
 ```hisat2 -p 8 -x Rice_index -1 $SRR11540639_1.fastq.gz -2 $SRR11540639_2.fastq.gz -S $SRR11540639.sam```
 ```hisat2 -p 8 -x Rice_index -1 $SRR11540640_1.fastq.gz -2 $SRR11540640_2.fastq.gz -S $SRR11540639.sam```
 ```hisat2 -p 8 -x Rice_index -1 $SRR11540641_1.fastq.gz -2 $SRR11540641_2.fastq.gz -S $SRR11540639.sam```
@@ -129,10 +128,10 @@ Con hisat2 se crean dos.tsv  uno con los exones y otro con los sitios de empalme
 
 Hisat2 con el mapeo hace un resumen de todas las lecturas en un solo archivo y esto ayuda a resolver metricas relacionadas con como se mapearon y el numero de lecturas.
 
-# Paso6
-```module load samtools
+# Samtools
+```module load samtools```
 
-for line in $(cat muestras.txt)
+```for line in $(cat muestras.txt)
 do
 samtools sort -@ 8 -o $line.bam $line.sam;
 done```
@@ -140,7 +139,7 @@ done```
   
   En este for loop se cambia de sam a bam ya que no se pude trabajar con ese formato y luego se ordena los productos de bam par que sea mas facil analizarlo despues
 
-  # Paso7
+  # Htseq-count
 ```htseq-count \```
     ```--format=bam \```
     ```--order=pos \```
@@ -155,7 +154,7 @@ done```
     
     Ya con htseq-count se cuentan cuantos alineamientos se logran adecuadamente y se logra hacer una matriz en la cual se consigue que todas la secuencias esten en un mismo archivo y que los alineamientos corrrectos se mueatren ea un numero entero para luego hacer un heatmap.
 
-# Paso8
+# Heatmap
 ```library(edgeR)```
 ```library(ggrepel)```
 ```library(gplots)```
@@ -219,4 +218,3 @@ done```
 ```dev.off()```
 
 Con todo esto se creo el heatmap que mostraba los genes con alta,intermedia y baja expresion segun los colores y tambien a que tipo de planta micorriza o no micorriza pertenecia y cuales podian ser relacionados con el PHT1.
-
