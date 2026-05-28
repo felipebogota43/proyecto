@@ -128,14 +128,31 @@ Con hisat2 se crean dos.tsv  uno con los exones y otro con los sitios de empalme
 Hisat2 con el mapeo hace un resumen de todas las lecturas en un solo archivo y esto ayuda a resolver metricas relacionadas con como se mapearon y el numero de lecturas.
 
 # Paso6
-```` module load samtools```
+```module load samtools```
 
 ```for line in SRR11540639 SRR11540640 SRR11540641 SRR11540642 SRR11540643 SRR11540644```
 ```do```
 
-  ```sam="${line}.sam"```
+  ```sam="$SRR11540639.sam"```
   
-  ```bam="${line}.bam"```
+  ```bam="$SRR11540639.bam"```
   
-  ```samtools sort -@ 8 -o "${line}.bam" "${line}.sam"```
+  ```samtools sort -@ 8 -o "$SRR11540639.bam" "$SRR11540639.sam"```
+  En este for loop se cambia de sam a bam ya que no se pude trabajar con ese formato y luego se ordena los productos de bam par que sea mas facil analizarlo despues
+
+  # Paso7
+```htseq-count \```
+    ```--format=bam \```
+    ```--order=pos \```
+    ```--mode=intersection-strict \```
+    ```--stranded=reverse \```
+    ```--minaqual=1 \```
+    ```--type=exon \```
+    ```--idattr=gene_id \```
+    ```"$bam" \```
+    ```"$GCA_001433935.1_IRGSP-1.0_genomic.gff" \```
+    ```> "$out"```
+    Ya con htseq-count se cuentan cuantos alineamientos se logran adecuadamente y se logra hacer una matriz en la cual se consigue que todas la secuencias esten en un mismo archivo y que los alineamientos corrrectos se mueatren ea un numero entero para luego hacer un heatmap.
+
+# Paso8
 
