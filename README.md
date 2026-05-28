@@ -132,5 +132,6 @@ Hisat2 con el mapeo hace un resumen de todas las lecturas en un solo archivo y e
 ```for line in SRR11540639 SRR11540640 SRR11540641 SRR11540642 SRR11540643 SRR11540644; do```
   ```sam="${line}.sam"```
   ```bam="${line}.bam"```
+  
   ```samtools sort -@ 8 -o "${line}.bam" "${line}.sam"```
 
