@@ -40,6 +40,7 @@ DEscaragmos las secuencias paired-end de oryza sativa tanto la forward como la r
 # paso2
 ```Module load java11```
 
+
 ```java -jar /opt/ohpc/pub/apps/trimmomatic/0.38/bin/trimmomatic-0.38.jar PE \
 -phred33 \
 SRR11540639_1.fastq.gz SRR11540639_2.fastq.gz \
