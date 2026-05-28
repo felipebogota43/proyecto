@@ -42,14 +42,14 @@ DEscaragmos las secuencias paired-end de oryza sativa tanto la forward como la r
 
 
 ```java -jar /opt/ohpc/pub/apps/trimmomatic/0.38/bin/trimmomatic-0.38.jar PE \```
--phred33 \
-SRR11540639_1.fastq.gz SRR11540639_2.fastq.gz \
-R1_paired_39.fastq.gz R1_unpaired_39.fastq.gz \
-R2_paired_39.fastq.gz R2_unpaired_39.fastq.gz \
-ILLUMINACLIP:/opt/ohpc/pub/apps/trimmomatic/0.38/bin/adapters/TruSeq3-PE.fa:2:30:10 \
-LEADING:3 TRAILING:3 \
-SLIDINGWINDOW:4:15 \
-MINLEN:36```
+```-phred33 \```
+```SRR11540639_1.fastq.gz SRR11540639_2.fastq.gz \```
+```R1_paired_39.fastq.gz R1_unpaired_39.fastq.gz \```
+```R2_paired_39.fastq.gz R2_unpaired_39.fastq.gz \```
+```ILLUMINACLIP:/opt/ohpc/pub/apps/trimmomatic/0.38/bin/adapters/TruSeq3-PE.fa:2:30:10 \```
+```LEADING:3 TRAILING:3 \```
+```SLIDINGWINDOW:4:15 \```
+```MINLEN:36```
 
 ```java -jar /opt/ohpc/pub/apps/trimmomatic/0.38/bin/trimmomatic-0.38.jar PE \
 -phred33 \
