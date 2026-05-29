@@ -21,11 +21,15 @@ wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11540644/SRR11540644_2.fastq.gz
 ```
 Descargamos las secuencias paired-end de _ORYZA_sativa_ tanto la forward como la reverse
 
-
-
-Esto solo se hizo para el SRR115 ya que el SRR682 ya eran secuencia limpias
 ``
+
+# Fatstqc
+```fastqc *.fastq.gz```
+
+Con esto se evalua la calidad de cada secuencia par ver que tanta informacion correcta y que sea de nustro estidio de interes poseen y si son adecuadas para trabajar.
+
 # Trimming
+Esto solo se hizo para el SRR115 ya que el SRR682 ya eran secuencia limpias
 
 ```Module load java11
 
@@ -90,15 +94,10 @@ Esto solo se hizo para el SRR115 ya que el SRR682 ya eran secuencia limpias
   MINLEN:36```
 
 Con esto hicimos el Trimmomatic y esto ayudo a limpiar las secuencias crudas ya que en el articulo no mencionaban que estuvieran limpias.
+
 ```
-# Fatstqc
-```fastqc *.fastq.gz```
-
-Con esto se evalua la calidad de cada secuencia par ver que tanta informacion correcta y que sea de nustro estidio de interes poseen y si son adecuadas para trabajar.
-
-
-Esta parte se uso solo en SRR115 ya que las del SRR682 eran single-end y no paired-end
 # Hisat2
+Esta parte se uso solo en SRR115 ya que las del SRR682 eran single-end y no paired-end
 
 ```hisat2_extract_splice_sites.py GCA_001433935.1_IRGSP-1.0_genomic.gff > splicesites.tsv
 
