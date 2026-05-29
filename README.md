@@ -5,8 +5,8 @@ Este pipeline se utilizo en ambos datasets pero para ejemplificar solo se utiliz
 
 
 # Descargar secuencias
-
-```wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/039/SRR11540639/SRR11540639_1.fastq.gz
+```
+wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/039/SRR11540639/SRR11540639_1.fastq.gz
 wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/039/SRR11540639/SRR11540639_2.fastq.gz
 wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/040/SRR11540640/SRR11540640_1.fastq.gz
 wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/040/SRR11540640/SRR11540640_2.fastq.gz
@@ -126,7 +126,8 @@ En este for loop se cambia de sam a bam ya que no se pude trabajar con ese forma
 
   # Htseq-count
   Se utilizo la misma ruta de Histat 2 en este proceso
-```htseq-count \
+  ```
+htseq-count \
     --format=bam \
     --order=pos \
     --mode=intersection-strict \
