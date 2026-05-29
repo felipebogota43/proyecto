@@ -1,5 +1,6 @@
-# proyecto
-ESte pipeline se utilizo en ambos datsets pero para ejemplificar solo se utilizara el prefijo SRR115
+# REGULACIÓN TRANSCRIPTÓMICA DE GENES TRANSPORTADORES DE FÓSFORO (PHT1) EN PLANTAS MICORRIZADAS BAJO DEFICIENCIA DE FÓSFORO.
+
+ESte pipeline se utilizo en ambos datsets pero para ejemplificar solo se utilizara el prefijo SRR115 de _ORYZA_sativa_ y se mostrara cada paso para que sirvio y como se utilizo.
 
 
 # Descargar secuencias
@@ -17,10 +18,12 @@ wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11540643/SRR11540643_2.fastq.gz
 wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11540644/SRR11540644_1.fastq.gz
 wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11540644/SRR11540644_2.fastq.gz```
 
-Descaragmos las secuencias paired-end de _ORYZA_ _sativa_ tanto la forward como la reverse
+Descaragmos las secuencias paired-end de _ORYZA_sativa_ tanto la forward como la reverse
 
 
 Esto solo se hizo para el SRR115 ya que el SRR682 ya eran secuencia limpias
+
+#Trimming
 
 ```Module load java11
 
@@ -113,9 +116,9 @@ Con hisat2 se crean dos.tsv  uno con los exones y otro con los sitios de empalme
 Hisat2 con el mapeo hace un resumen de todas las lecturas en un solo archivo y esto ayuda a resolver metricas relacionadas con como se mapearon y el numero de lecturas.
 
 # Samtools
-```module load samtools```
+```module load samtools
 
-```for line in $(cat muestras.txt)
+for line in $(cat muestras.txt)
 do
 samtools sort -@ 8 -o $line.bam $line.sam;
 done```
