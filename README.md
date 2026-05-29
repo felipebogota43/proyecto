@@ -16,12 +16,14 @@ wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11540643/SRR11540643_2.fastq.gz
 wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11540644/SRR11540644_1.fastq.gz
 wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11540644/SRR11540644_2.fastq.gz```
 
-Descaragmos las secuencias paired-end de oryza sativa tanto la forward como la reverse
+Descaragmos las secuencias paired-end de _ORYZA_ _sativa tanto la forward como la reverse
 
 
 Esto solo se hizo para el SRR115 ya que el SRR682 ya eran secuencia limpias
 
-```module load java11
+# Trimming
+
+```Module load java11
 
 java -jar /opt/ohpc/pub/apps/trimmomatic/0.38/bin/trimmomatic-0.38.jar PE \
   -phred33 \
