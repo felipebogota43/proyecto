@@ -22,7 +22,6 @@ Descaragmos las secuencias paired-end de oryza sativa tanto la forward como la r
 Esto solo se hizo para el SRR115 ya que el SRR682 ya eran secuencia limpias
 
 ```Module load java11
-
 java -jar /opt/ohpc/pub/apps/trimmomatic/0.38/bin/trimmomatic-0.38.jar PE
 -phred33
 SRR11540639_1.fastq.gz SRR11540639_2.fastq.gz
@@ -32,7 +31,6 @@ ILLUMINACLIP:/opt/ohpc/pub/apps/trimmomatic/0.38/bin/adapters/TruSeq3-PE.fa:2:30
 LEADING:3 TRAILING:3
 SLIDINGWINDOW:4:15
 MINLEN:36
-
 java -jar /opt/ohpc/pub/apps/trimmomatic/0.38/bin/trimmomatic-0.38.jar PE
 -phred33
 SRR11540640_1.fastq.gz SRR11540640_2.fastq.gz
@@ -42,7 +40,6 @@ ILLUMINACLIP:/opt/ohpc/pub/apps/trimmomatic/0.38/bin/adapters/TruSeq3-PE.fa:2:30
 LEADING:3 TRAILING:3
 SLIDINGWINDOW:4:15
 MINLEN:36
-
 java -jar /opt/ohpc/pub/apps/trimmomatic/0.38/bin/trimmomatic-0.38.jar PE
 -phred33
 SRR11540641_1.fastq.gz SRR11540641_2.fastq.gz
@@ -52,7 +49,6 @@ ILLUMINACLIP:/opt/ohpc/pub/apps/trimmomatic/0.38/bin/adapters/TruSeq3-PE.fa:2:30
 LEADING:3 TRAILING:3
 SLIDINGWINDOW:4:15
 MINLEN:36
-
 java -jar /opt/ohpc/pub/apps/trimmomatic/0.38/bin/trimmomatic-0.38.jar PE
 -phred33
 SRR11540642_1.fastq.gz SRR11540642_2.fastq.gz
@@ -62,7 +58,6 @@ ILLUMINACLIP:/opt/ohpc/pub/apps/trimmomatic/0.38/bin/adapters/TruSeq3-PE.fa:2:30
 LEADING:3 TRAILING:3
 SLIDINGWINDOW:4:15
 MINLEN:36
-
 java -jar /opt/ohpc/pub/apps/trimmomatic/0.38/bin/trimmomatic-0.38.jar PE
 -phred33
 SRR11540643_1.fastq.gz SRR11540643_2.fastq.gz
@@ -72,7 +67,6 @@ ILLUMINACLIP:/opt/ohpc/pub/apps/trimmomatic/0.38/bin/adapters/TruSeq3-PE.fa:2:30
 LEADING:3 TRAILING:3
 SLIDINGWINDOW:4:15
 MINLEN:36
-
 java -jar /opt/ohpc/pub/apps/trimmomatic/0.38/bin/trimmomatic-0.38.jar PE
 -phred33
 SRR11540644_1.fastq.gz SRR11540644_2.fastq.gz
