@@ -1,7 +1,7 @@
 # Felipe Bogotá y Sofia MUñoz
 # REGULACIÓN TRANSCRIPTÓMICA DE GENES TRANSPORTADORES DE FÓSFORO (PHT1) EN PLANTAS MICORRIZADAS BAJO DEFICIENCIA DE FÓSFORO.
 
-Este pipeline se utilizo en ambos datsets pero para ejemplificar solo se utilizara el prefijo SRR115 de _ORYZA_sativa_ y se mostrara cada paso para que sirvio y como se utilizo.
+Este pipeline se utilizo en ambos datasets pero para ejemplificar solo se utilizara el prefijo SRR115 de _ORYZA_sativa_ y se mostrara cada paso para que sirvio y como se utilizo.
 
 
 # Descargar secuencias
@@ -25,7 +25,7 @@ Descargamos las secuencias paired-end de _ORYZA_sativa_ tanto la forward como la
 # Fatstqc
 ```fastqc *.fastq.gz```
 
-Con esto se evalua la calidad de cada secuencia par ver que tanta informacion correcta y que sea de nustro estidio de interes poseen y si son adecuadas para trabajar.
+Con esto se evalua la calidad de cada secuencia par ver que tanta informacion correcta y que sea de nuestro estudio de interes poseen y si son adecuadas para trabajar.
 
 # Trimming
 Esto solo se hizo para el SRR115 ya que el SRR682 ya eran secuencias limpias
@@ -101,19 +101,15 @@ Esta parte se uso solo en SRR115 ya que las del SRR682 eran single-end y no pair
 ANte de cad secuencia se utilizo la ruta de Hisat2 ```/datacnmat01/ciencias/appsbio/conda/envs/appsb/bin/```
 
 ```hisat2_extract_splice_sites.py GCA_001433935.1_IRGSP-1.0_genomic.gff > splicesites.tsv
-
 hisat2_extract_exons.py GCA_001433935.1_IRGSP-1.0_genomic.gff > exons.tsv
-
-hisat2-build -p 8 --ss splicesites.tsv --exon exons.tsv GCA_001433935.1.fasta  Rice_index```
-
-```hisat2 -p 8 -x Rice_index -1 $SRR11540639_1.fastq.gz -2 $SRR11540639_2.fastq.gz -S $SRR11540639.sam
+hisat2-build -p 8 --ss splicesites.tsv --exon exons.tsv GCA_001433935.1.fasta  Rice_index
+hisat2 -p 8 -x Rice_index -1 $SRR11540639_1.fastq.gz -2 $SRR11540639_2.fastq.gz -S $SRR11540639.sam
 hisat2 -p 8 -x Rice_index -1 $SRR11540640_1.fastq.gz -2 $SRR11540640_2.fastq.gz -S $SRR11540639.sam
 hisat2 -p 8 -x Rice_index -1 $SRR11540641_1.fastq.gz -2 $SRR11540641_2.fastq.gz -S $SRR11540639.sam
 hisat2 -p 8 -x Rice_index -1 $SRR11540642_1.fastq.gz -2 $SRR11540642_2.fastq.gz -S $SRR11540639.sam
-hisat2 -p 8 -x Rice_index -1 $SRR11540643_1.fastq.gz -2 $SRR11540643_2.fastq.gz -S $SRR11540639.sam```
-
+hisat2 -p 8 -x Rice_index -1 $SRR11540643_1.fastq.gz -2 $SRR11540643_2.fastq.gz -S $SRR11540639.sam
 ```
-Con hisat2 se crean dos.tsv  uno con los exones y otro con los sitios de empalme(splicesites)luego se usa eso dos atchivos para crear un indice  esto es importante porque los istios de mepalme dan información sobre los saltos de intrones,los exones muestran las regines codificantes y por ultimo el indice a agilizar el proceso y que se mapee con precision las secuencias paired-end.
+Con hisat2 se crean dos.tsv  uno con los exones y otro con los sitios de empalme(splicesites)luego se usa esos dos archivos para crear un indice  esto es importante porque los sitios de empalme dan información sobre los saltos de intrones,los exones muestran las regiones codificantes y por ultimo el indice ayuda a agilizar el proceso y que se mapee con precision las secuencias paired-end.
 Hisat2 con el mapeo hace un resumen de todas las lecturas en un solo archivo y esto ayuda a resolver metricas relacionadas con como se mapearon y el numero de lecturas.
 
 # Samtools
@@ -142,7 +138,7 @@ En este for loop se cambia de sam a bam ya que no se pude trabajar con ese forma
     > "$line.out"
 ```
 
-Ya con htseq-count se cuentan cuantos alineamientos se logran adecuadamente y se logra hacer una matriz en la cual se consigue que todas la secuencias esten en un mismo archivo y que los alineamientos corrrectos se mueatren ea un numero entero para luego hacer un heatmap.
+Ya con htseq-count se cuentan cuantos alineamientos se logran adecuadamente y se logra hacer una matriz en la cual se consigue que todas la secuencias esten en un mismo archivo y que los alineamientos correctos se muestren como un numero entero para luego hacer un heatmap.
 
 
 
