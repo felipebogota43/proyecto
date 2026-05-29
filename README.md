@@ -1,6 +1,6 @@
 # REGULACIÓN TRANSCRIPTÓMICA DE GENES TRANSPORTADORES DE FÓSFORO (PHT1) EN PLANTAS MICORRIZADAS BAJO DEFICIENCIA DE FÓSFORO.
 
-ESte pipeline se utilizo en ambos datsets pero para ejemplificar solo se utilizara el prefijo SRR115 de _ORYZA_sativa_ y se mostrara cada paso para que sirvio y como se utilizo.
+Este pipeline se utilizo en ambos datsets pero para ejemplificar solo se utilizara el prefijo SRR115 de _ORYZA_sativa_ y se mostrara cada paso para que sirvio y como se utilizo.
 
 
 # Descargar secuencias
@@ -18,12 +18,12 @@ wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11540643/SRR11540643_2.fastq.gz
 wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11540644/SRR11540644_1.fastq.gz
 wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11540644/SRR11540644_2.fastq.gz```
 
-Descaragmos las secuencias paired-end de _ORYZA_sativa_ tanto la forward como la reverse
+Descargamos las secuencias paired-end de _ORYZA_sativa_ tanto la forward como la reverse
 
 
 Esto solo se hizo para el SRR115 ya que el SRR682 ya eran secuencia limpias
 
-# Trimming
+
 
 ```Module load java11
 
