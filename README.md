@@ -90,8 +90,8 @@ Esto solo se hizo para el SRR115 ya que el SRR682 ya eran secuencia limpias
   ILLUMINACLIP:/opt/ohpc/pub/apps/trimmomatic/0.38/bin/adapters/TruSeq3-PE.fa:2:30:10 \
   LEADING:3 TRAILING:3 \
   SLIDINGWINDOW:4:15 \
-  MINLEN:36```
-````
+  MINLEN:36
+```
 Con esto hicimos el Trimmomatic y esto ayudo a limpiar las secuencias crudas ya que en el articulo no mencionaban que estuvieran limpias.
 
 
@@ -120,24 +120,24 @@ Hisat2 con el mapeo hace un resumen de todas las lecturas en un solo archivo y e
 for line in $(cat muestras.txt)
 do
 samtools sort -@ 8 -o $line.bam $line.sam;
-done```
+done
 
 ```
 En este for loop se cambia de sam a bam ya que no se pude trabajar con ese formato y luego se ordena los productos de bam para que sea mas facil analizarlo despues
 
 
   # Htseq-count
-```htseq-count \```
-    ```--format=bam \```
-    ```--order=pos \```
-    ```--mode=intersection-strict \```
-    ```--stranded=reverse \```
-    ```--minaqual=1 \```
-    ```--type=exon \```
-    ```--idattr=gene_id \```
-    ```"$bam" \```
-    ```"$GCA_001433935.1_IRGSP-1.0_genomic.gff" \```
-    ```> "$out"```
+```htseq-count \
+    --format=bam \
+    --order=pos \
+    --mode=intersection-strict \
+    --stranded=reverse \
+    --minaqual=1 \
+    --type=exon \
+    --idattr=gene_id \
+    "$bam" \
+   "$GCA_001433935.1_IRGSP-1.0_genomic.gff" \
+    > "$out"```
     
 
 Ya con htseq-count se cuentan cuantos alineamientos se logran adecuadamente y se logra hacer una matriz en la cual se consigue que todas la secuencias esten en un mismo archivo y que los alineamientos corrrectos se mueatren ea un numero entero para luego hacer un heatmap.
