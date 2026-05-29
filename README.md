@@ -1,7 +1,7 @@
 # Felipe Bogotá y Sofia Muñoz
 # REGULACIÓN TRANSCRIPTÓMICA DE GENES TRANSPORTADORES DE FÓSFORO (PHT1) EN PLANTAS MICORRIZADAS BAJO DEFICIENCIA DE FÓSFORO.
 
-Este pipeline se utilizo en ambos datasets pero para ejemplificar solo se utilizara el prefijo SRR115 de _Oryza sativa_ y se mostrara cada paso para que sirvio y como se utilizo.
+Este pipeline se utilizó en ambos datasets pero para ejemplificar sólo se utilizará el prefijo SRR115 de _Oryza sativa_ y se mostrará cada paso para qué sirvió y cómo se utilizó.
 
 
 # Descargar secuencias
@@ -19,16 +19,16 @@ wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11540643/SRR11540643_2.fastq.gz
 wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11540644/SRR11540644_1.fastq.gz
 wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11540644/SRR11540644_2.fastq.gz
 ```
-Descargamos las secuencias paired-end de _Oryza sativa_ tanto la forward como la reverse
+Descargamos las secuencias paired-end de _Oryza sativa_ tanto la forward como la reverse.
 
 
 # Fatstqc
 ```fastqc *.fastq.gz```
 
-Con esto se evalua la calidad de cada secuencia par ver que tanta informacion correcta y que sea de nuestro estudio de interes poseen y si son adecuadas para trabajar.
+Con esto se evaluó la calidad de cada secuencia para ver que tanta información correcta y que sea de nuestro estudio de interés poseen y si son adecuadas para trabajar.
 
 # Trimming
-Esto solo se hizo para el SRR115 ya que el SRR682 ya eran secuencias limpias
+Esto sólo se hizo para el SRR115 ya que el SRR682 ya eran secuencias limpias.
 
 ```Module load java11
 
@@ -92,13 +92,13 @@ Esto solo se hizo para el SRR115 ya que el SRR682 ya eran secuencias limpias
   SLIDINGWINDOW:4:15 \
   MINLEN:36
 ```
-Con esto hicimos el Trimmomatic y esto ayudo a limpiar las secuencias crudas ya que en el articulo no mencionaban que estuvieran limpias.
+Con esto hicimos el Trimmomatic y esto ayudó a limpiar las secuencias crudas ya que en el articulo no mencionaban que estuvieran limpias.
 
 
 # Hisat2
-Esta parte se uso 2 secuencias en SRR115 porque era paired-end y en las SRR682 se uso una sola secuencia porque ra single-end
+Esta parte usó 2 secuencias en SRR115 porque eran paired-end y en las SRR682 se usó una sola secuencia porque eran single-end.
 
-Ante de cad secuencia se utilizo la ruta de Hisat2 ```/datacnmat01/ciencias/appsbio/conda/envs/appsb/bin/```
+Antse de cada secuencia se utilizó la ruta de Hisat2: ```/datacnmat01/ciencias/appsbio/conda/envs/appsb/bin/```
 
 ```hisat2_extract_splice_sites.py GCA_001433935.1_IRGSP-1.0_genomic.gff > splicesites.tsv
 hisat2_extract_exons.py GCA_001433935.1_IRGSP-1.0_genomic.gff > exons.tsv
@@ -109,8 +109,8 @@ hisat2 -p 8 -x Rice_index -1 $SRR11540641_1.fastq.gz -2 $SRR11540641_2.fastq.gz 
 hisat2 -p 8 -x Rice_index -1 $SRR11540642_1.fastq.gz -2 $SRR11540642_2.fastq.gz -S $SRR11540639.sam
 hisat2 -p 8 -x Rice_index -1 $SRR11540643_1.fastq.gz -2 $SRR11540643_2.fastq.gz -S $SRR11540639.sam
 ```
-Con hisat2 se crean dos.tsv  uno con los exones y otro con los sitios de empalme(splicesites)luego se usa esos dos archivos para crear un indice  esto es importante porque los sitios de empalme dan información sobre los saltos de intrones,los exones muestran las regiones codificantes y por ultimo el indice ayuda a agilizar el proceso y que se mapee con precision las secuencias paired-end.
-Hisat2 con el mapeo hace un resumen de todas las lecturas en un solo archivo y esto ayuda a resolver metricas relacionadas con como se mapearon y el numero de lecturas.
+Con Hisat2 se crearon dos archivo ".tsv",  uno con los exones y otro con los sitios de empalme (splicesites). Luego se usaron esos dos archivos para crear un índice; esto es importante porque los sitios de empalme dan información sobre los saltos de intrones, los exones muestran las regiones codificantes y por último el índice ayuda a agilizar el proceso y que se mapee con precisión las secuencias paired-end.
+Hisat2 con el mapeo hace un resumen de todas las lecturas en un solo archivo y esto ayuda a resolver métricas relacionadas con cómo se mapearon y el numero de lecturas.
 
 # Samtools
 ```module load samtools
@@ -121,11 +121,11 @@ samtools sort -@ 8 -o $line.bam $line.sam;
 done
 
 ```
-En este for loop se cambia de sam a bam ya que no se pude trabajar con ese formato y luego se ordena los productos de bam para que sea mas facil analizarlo despues
+En este "for loop" se cambia de ".sam" a ".bam" ya que no se pude trabajar con ese formato y luego se ordena los productos de ".bam" para que sea mas facil analizarlo después.
 
 
   # Htseq-count
-  Se utilizo la misma ruta de Histat 2 en este proceso
+  Se utiliz´´o la misma ruta de Histat2 en este proceso
   ```
 htseq-count \
     --format=bam \
@@ -140,7 +140,7 @@ htseq-count \
     > "$line.out"
 ```
 
-Ya con htseq-count se cuentan cuantos alineamientos se logran adecuadamente y se logra hacer una matriz en la cual se consigue que todas la secuencias esten en un mismo archivo y que los alineamientos correctos se muestren como un numero entero para luego hacer un heatmap.
+Ya con Htseq-count se cuentan cuantos alineamientos se logran adecuadamente y se logra hacer una matríz en la cual se consigue que todas la secuencias esten en un mismo archivo y que los alineamientos correctos se muestren como un número entero para luego hacer un heatmap.
 
 
 
@@ -182,4 +182,4 @@ key=TRUE,
 scale="row")
 dev.off()
 ```
-Con todo esto se creo el heatmap que mostraba los genes con alta,intermedia y baja expresion segun los colores y tambien a que tipo de planta micorriza o no micorriza pertenecia y cuales podian ser relacionados con el PHT1.
+Con todo esto se creó el hHeatmap que mostraba los genes con alta, intermedia y baja expresión según los colores y también a que tipo de taramiento (micorriza o no micorriza) pertenecía y cuales podrían ser relacionados con el PHT1.
