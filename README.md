@@ -196,9 +196,7 @@ Ya con htseq-count se cuentan cuantos alineamientos se logran adecuadamente y se
 ```dim(highly_variable_lcpm)```
 
 ```mypalette <- scale_fill_viridis(discrete = TRUE)```
-
 ```pdf("heatmap.pdf")```
-
 ```heatmap(highly_variable_lcpm,```
 ```trace="none",```
 ```main="Top 500 most variable genes across samples",```
