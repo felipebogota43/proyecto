@@ -94,7 +94,7 @@ Esto solo se hizo para el SRR115 ya que el SRR682 ya eran secuencia limpias
 ````
 Con esto hicimos el Trimmomatic y esto ayudo a limpiar las secuencias crudas ya que en el articulo no mencionaban que estuvieran limpias.
 
-```
+
 # Hisat2
 Esta parte se uso solo en SRR115 ya que las del SRR682 eran single-end y no paired-end
 
@@ -122,10 +122,10 @@ do
 samtools sort -@ 8 -o $line.bam $line.sam;
 done```
 
-
+```
 En este for loop se cambia de sam a bam ya que no se pude trabajar con ese formato y luego se ordena los productos de bam para que sea mas facil analizarlo despues
 
-```
+
   # Htseq-count
 ```htseq-count \```
     ```--format=bam \```
