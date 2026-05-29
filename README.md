@@ -23,7 +23,7 @@ Descaragmos las secuencias paired-end de _ORYZA_sativa_ tanto la forward como la
 
 Esto solo se hizo para el SRR115 ya que el SRR682 ya eran secuencia limpias
 
-#Trimming
+# Trimming
 
 ```Module load java11
 
@@ -94,6 +94,8 @@ Con esto hicimos el Trimmomatic y esto ayudo a limpiar las secuencias crudas ya 
 
 Con esto se evalua la calidad de cada secuencia par ver que tanta informacion correcta y que sea de nustro estidio de interes poseen y si son adecuadas para trabajar.
 
+
+Esta parte se uso solo en SRR115 ya que las del SRR682 eran single-end y no paired-end
 # Hisat2
 
 ```hisat2_extract_splice_sites.py GCA_001433935.1_IRGSP-1.0_genomic.gff > splicesites.tsv
@@ -101,10 +103,6 @@ Con esto se evalua la calidad de cada secuencia par ver que tanta informacion co
 hisat2_extract_exons.py GCA_001433935.1_IRGSP-1.0_genomic.gff > exons.tsv
 
 hisat2-build -p 8 --ss splicesites.tsv --exon exons.tsv GCA_001433935.1.fasta  Rice_index```
-
-
-
-Esta parte se uso solo en SRR115 ya que las del SRR682 eran single-end y no paired-end
 
 ```hisat2 -p 8 -x Rice_index -1 $SRR11540639_1.fastq.gz -2 $SRR11540639_2.fastq.gz -S $SRR11540639.sam
 hisat2 -p 8 -x Rice_index -1 $SRR11540640_1.fastq.gz -2 $SRR11540640_2.fastq.gz -S $SRR11540639.sam
