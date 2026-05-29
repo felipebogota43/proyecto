@@ -96,9 +96,9 @@ Con esto hicimos el Trimmomatic y esto ayudo a limpiar las secuencias crudas ya 
 
 
 # Hisat2
-Esta parte se uso solo en SRR115 ya que las del SRR682 eran single-end y no paired-end
+Esta parte se uso 2 secuencias en SRR115 porque era paired-end y en las SRR682 se uso una sola secuencia porque ra single-end
 
-ANte de cad secuencia se utilizo la ruta de Hisat2 ```/datacnmat01/ciencias/appsbio/conda/envs/appsb/bin/```
+Ante de cad secuencia se utilizo la ruta de Hisat2 ```/datacnmat01/ciencias/appsbio/conda/envs/appsb/bin/```
 
 ```hisat2_extract_splice_sites.py GCA_001433935.1_IRGSP-1.0_genomic.gff > splicesites.tsv
 hisat2_extract_exons.py GCA_001433935.1_IRGSP-1.0_genomic.gff > exons.tsv
@@ -125,6 +125,7 @@ En este for loop se cambia de sam a bam ya que no se pude trabajar con ese forma
 
 
   # Htseq-count
+  Se utilizo la misma ruta de Histat 2 en este proceso
 ```htseq-count \
     --format=bam \
     --order=pos \
@@ -178,6 +179,6 @@ trace="none",
 main="Top 500 most variable genes across samples",
 key=TRUE,
 scale="row")
-dev.off()```
-
+dev.off()
+```
 Con todo esto se creo el heatmap que mostraba los genes con alta,intermedia y baja expresion segun los colores y tambien a que tipo de planta micorriza o no micorriza pertenecia y cuales podian ser relacionados con el PHT1.
