@@ -137,15 +137,15 @@ En este for loop se cambia de sam a bam ya que no se pude trabajar con ese forma
     --minaqual=1 \
     --type=exon \
     --idattr=gene_id \
-    "$bam" \
+    "$line.bam" \
    "$GCA_001433935.1_IRGSP-1.0_genomic.gff" \
-    > "$out"```
+    > "$line.out"```
     
 
 Ya con htseq-count se cuentan cuantos alineamientos se logran adecuadamente y se logra hacer una matriz en la cual se consigue que todas la secuencias esten en un mismo archivo y que los alineamientos corrrectos se mueatren ea un numero entero para luego hacer un heatmap.
 
 
-
+```
 # Heatmap
 ```library(edgeR)
 library(ggrepel)
