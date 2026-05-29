@@ -3,6 +3,7 @@ ESte pipeline se utilizo en ambos datsets pero para ejemplificar solo se utiliza
 
 
 # Descargar secuencias
+
 ```wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/039/SRR11540639/SRR11540639_1.fastq.gz
 wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/039/SRR11540639/SRR11540639_2.fastq.gz
 wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/040/SRR11540640/SRR11540640_1.fastq.gz
