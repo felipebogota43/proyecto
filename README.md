@@ -23,7 +23,7 @@ Descargamos las secuencias paired-end de _ORYZA_sativa_ tanto la forward como la
 
 Esto solo se hizo para el SRR115 ya que el SRR682 ya eran secuencia limpias
 
-# Trimming
+Trimming
 
 ```Module load java11
 
