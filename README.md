@@ -23,7 +23,7 @@ Descargamos las secuencias paired-end de _ORYZA_sativa_ tanto la forward como la
 
 
 Esto solo se hizo para el SRR115 ya que el SRR682 ya eran secuencia limpias
-
+```
 # Trimming
 
 ```Module load java11
@@ -89,7 +89,7 @@ Esto solo se hizo para el SRR115 ya que el SRR682 ya eran secuencia limpias
   MINLEN:36```
 
 Con esto hicimos el Trimmomatic y esto ayudo a limpiar las secuencias crudas ya que en el articulo no mencionaban que estuvieran limpias.
-
+```
 # Fatstqc
 ```fastqc *.fastq.gz```
 
@@ -113,7 +113,7 @@ hisat2 -p 8 -x Rice_index -1 $SRR11540643_1.fastq.gz -2 $SRR11540643_2.fastq.gz 
 
 Con hisat2 se crean dos.tsv  uno con los exones y otro con los sitios de empalme(splicesites)luego se usa eso dos atchivos para crear un indice  esto es importante porque los istios de mepalme dan información sobre los saltos de intrones,los exones muestran las regines codificantes y por ultimo el indice a agilizar el proceso y que se mapee con precision las secuencias paired-end.
 Hisat2 con el mapeo hace un resumen de todas las lecturas en un solo archivo y esto ayuda a resolver metricas relacionadas con como se mapearon y el numero de lecturas.
-
+```
 # Samtools
 ```module load samtools
 
@@ -125,7 +125,7 @@ done```
 
 En este for loop se cambia de sam a bam ya que no se pude trabajar con ese formato y luego se ordena los productos de bam para que sea mas facil analizarlo despues
 
-
+```
   # Htseq-count
 ```htseq-count \```
     ```--format=bam \```
