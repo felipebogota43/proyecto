@@ -1,3 +1,4 @@
+# Felipe Bogotá y Sofia MUñoz
 # REGULACIÓN TRANSCRIPTÓMICA DE GENES TRANSPORTADORES DE FÓSFORO (PHT1) EN PLANTAS MICORRIZADAS BAJO DEFICIENCIA DE FÓSFORO.
 
 Este pipeline se utilizo en ambos datsets pero para ejemplificar solo se utilizara el prefijo SRR115 de _ORYZA_sativa_ y se mostrara cada paso para que sirvio y como se utilizo.
