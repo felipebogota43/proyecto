@@ -28,7 +28,7 @@ Descargamos las secuencias paired-end de _ORYZA_sativa_ tanto la forward como la
 Con esto se evalua la calidad de cada secuencia par ver que tanta informacion correcta y que sea de nustro estidio de interes poseen y si son adecuadas para trabajar.
 
 # Trimming
-Esto solo se hizo para el SRR115 ya que el SRR682 ya eran secuencia limpias
+Esto solo se hizo para el SRR115 ya que el SRR682 ya eran secuencias limpias
 
 ```Module load java11
 
@@ -98,6 +98,8 @@ Con esto hicimos el Trimmomatic y esto ayudo a limpiar las secuencias crudas ya 
 # Hisat2
 Esta parte se uso solo en SRR115 ya que las del SRR682 eran single-end y no paired-end
 
+ANte de cad secuencia se utilizo la ruta de Hisat2 ```/datacnmat01/ciencias/appsbio/conda/envs/appsb/bin/```
+
 ```hisat2_extract_splice_sites.py GCA_001433935.1_IRGSP-1.0_genomic.gff > splicesites.tsv
 
 hisat2_extract_exons.py GCA_001433935.1_IRGSP-1.0_genomic.gff > exons.tsv
@@ -145,64 +147,41 @@ Ya con htseq-count se cuentan cuantos alineamientos se logran adecuadamente y se
 
 
 # Heatmap
-```library(edgeR)```
-```library(ggrepel)```
-```library(gplots)```
-```library(RColorBrewer)```
-```library(dplyr)```
-```library(viridis)```
-
-```x <- read.table("filtered10_counts.tsv", header=T)```
-
-```row.names(x)<-x$GeneID```
-
-```x1 <- subset(x, select = -GeneID)```
-
-```x1[] <- lapply(x1, as.numeric)```
-
-```x<-as.matrix(x1)```
-
-```group<-factor(c("AM","AM","NoAM","NoAM","NoAM","AM"))```
-
-```y<- DGEList(counts=x,group=group)```
-
-```levels(y$samples$group)```
-
-```design <- model.matrix(~0+group, data=y$samples)```
-
-```colnames(design) <- levels(y$samples$group)```
-
-```y<-calcNormFactors(y)```
-
-```y<-estimateDisp(y,design)```
-
-```fit <- glmFit(y, design)```
-
-```my.contrasts <- makeContrasts(AM_NoAM=AM-NoAM, levels=design)```
-
-```qlf <- glmLRT(fit, contrast=my.contrasts[,"AM_NoAM"])```
-
-```summary(decideTests(qlf ,p.value=0.05))```
-
-```topTags(qlf)```
-
-```logcounts <- cpm(y,log=TRUE)```
-
-```var_genes <- apply(logcounts, 1, var)```
-
-```select_var <- names(sort(var_genes, decreasing=TRUE))[1:100]```
-
-```highly_variable_lcpm <- logcounts[select_var,]```
-
-```dim(highly_variable_lcpm)```
-
-```mypalette <- scale_fill_viridis(discrete = TRUE)```
-```pdf("heatmap.pdf")```
-```heatmap(highly_variable_lcpm,```
-```trace="none",```
-```main="Top 500 most variable genes across samples",```
-```key=TRUE,```
-```scale="row")```
-```dev.off()```
+```library(edgeR)
+library(ggrepel)
+library(gplots)
+library(RColorBrewer)
+library(dplyr)
+library(viridis)
+x <- read.table("filtered10_counts.tsv", header=T)
+row.names(x)<-x$GeneID
+x1 <- subset(x, select = -GeneID)
+x1[] <- lapply(x1, as.numeric)
+x<-as.matrix(x1)
+group<-factor(c("AM","AM","NoAM","NoAM","NoAM","AM"))
+y<- DGEList(counts=x,group=group)
+levels(y$samples$group)
+design <- model.matrix(~0+group, data=y$samples)
+colnames(design) <- levels(y$samples$group)
+y<-calcNormFactors(y)
+y<-estimateDisp(y,design)
+fit <- glmFit(y, design)
+my.contrasts <- makeContrasts(AM_NoAM=AM-NoAM, levels=design)
+qlf <- glmLRT(fit, contrast=my.contrasts[,"AM_NoAM"])
+summary(decideTests(qlf ,p.value=0.05))
+topTags(qlf)
+logcounts <- cpm(y,log=TRUE)
+var_genes <- apply(logcounts, 1, var)
+select_var <- names(sort(var_genes, decreasing=TRUE))[1:100]
+highly_variable_lcpm <- logcounts[select_var,]
+dim(highly_variable_lcpm)
+mypalette <- scale_fill_viridis(discrete = TRUE)
+pdf("heatmap.pdf")
+heatmap(highly_variable_lcpm,
+trace="none",
+main="Top 500 most variable genes across samples",
+key=TRUE,
+scale="row")
+dev.off()```
 
 Con todo esto se creo el heatmap que mostraba los genes con alta,intermedia y baja expresion segun los colores y tambien a que tipo de planta micorriza o no micorriza pertenecia y cuales podian ser relacionados con el PHT1.
