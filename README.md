@@ -21,8 +21,6 @@ Descaragmos las secuencias paired-end de _ORYZA_ _sativa_ tanto la forward como 
 
 Esto solo se hizo para el SRR115 ya que el SRR682 ya eran secuencia limpias
 
-# Trimming
-
 ```Module load java11
 
   java -jar /opt/ohpc/pub/apps/trimmomatic/0.38/bin/trimmomatic-0.38.jar PE \
