@@ -182,4 +182,4 @@ key=TRUE,
 scale="row")
 dev.off()
 ```
-Con todo esto se creó el hHeatmap que mostraba los genes con alta, intermedia y baja expresión según los colores y también a que tipo de taramiento (micorriza o no micorriza) pertenecía y cuales podrían ser relacionados con el PHT1.
+Con todo esto se creó el Heatmap que mostraba los genes con alta, intermedia y baja expresión según los colores y también a que tipo de taramiento (micorriza o no micorriza) pertenecía y cuales podrían ser relacionados con el PHT1.
