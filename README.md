@@ -21,7 +21,6 @@ wget ftp.sra.ebi.ac.uk/vol1/fastq/SRR115/042/SRR11540644/SRR11540644_2.fastq.gz
 ```
 Descargamos las secuencias paired-end de _ORYZA_sativa_ tanto la forward como la reverse
 
-``
 
 # Fatstqc
 ```fastqc *.fastq.gz```
@@ -92,7 +91,7 @@ Esto solo se hizo para el SRR115 ya que el SRR682 ya eran secuencia limpias
   LEADING:3 TRAILING:3 \
   SLIDINGWINDOW:4:15 \
   MINLEN:36```
-
+````
 Con esto hicimos el Trimmomatic y esto ayudo a limpiar las secuencias crudas ya que en el articulo no mencionaban que estuvieran limpias.
 
 ```
